@@ -10,23 +10,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
+// load Branch
+(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking qrCode".split(" "), 0);
+         // init Branch
+         branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
 
-  (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
-
-  // branch.setIdentity("suuid", (err) => console.error(err));
-  branch.init('key_live_kaxcEcBIoOHeFuJaHLsifdbkEuiLAvEY', 
-	{
-		"metadata":{
-// 			"foo": "SetDataTest"
-		}
-	},       
-	function(err, data) {
-  });
-  branch.setBranchViewData({
-    data: {
-//       "linkData": "testData"
-    }
-  });
   var thisListener = function(event, data) { 
       window.journeyData = data;
       console.log("event " + JSON.stringify(event));
@@ -87,9 +75,10 @@
         }
     });
   };
+
   function showJourney () {
     console.log("showing");
-    branch.init('key_live_gchnKkd3l3m9YBPP2d73jmfejkcgVjgM', function(err, data) {
+    branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo', function(err, data) {
       branch.closeJourney(
         function(err) { 
           branch.track('pageview', null, {'branch_view_id': '411594526336324610'});
@@ -135,7 +124,7 @@
             });
   }
 </script>
-<title>Tarek's Test Site</title>
+<title>Jonathans Tech Cert Site</title>
 
 
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
@@ -148,7 +137,7 @@
 	<div class="container">
 
       <div class="row col-lg-8 col-lg-offset-2">
-      <h2>Tarek's Test Site</h2>
+      <h2>Jonathans Tech Cert Site</h2>
     </div>
     <section>
       <div class="row col-lg-8 col-lg-offset-2">
