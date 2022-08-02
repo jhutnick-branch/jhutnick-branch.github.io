@@ -10,8 +10,87 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+// load Branch
+(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking qrCode".split(" "), 0);
+ 
+// branch.setIdentity("suuid", (err) => console.error(err));
+branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
 
+  function purchaseEvent () {
+    console.log("purchase");
+    var commerce_data = {"revenue":28.45,
+      "currency":"USD",
+      "transaction_id":"313299",
+      "shipping":5.95,
+      "tax":0,
+      //"~referring_link":"379998049730159899",
+      "products":[{"sku":"xbar1788","name":"SAFTB Golf Towel - GOLF / SAFTB","price":25,"quantity":1,"category":"","variant":"GOLF / SAFTB"}]
+    };
+    var metadata =  {};
+    branch.trackCommerceEvent('purchase', commerce_data, metadata, function(err) {
+        if(err) {
+             throw err;
+        }
+    });
+  };
+
+  function registerEvent () {
+    console.log("register");
+    var register_data = {
+      "transaction_id": "tras_Id_1234",
+      "description": "Registered",
+      "registration_id": "12345"
+    };
+    var customer_event_alias = "my custom alias";
+    branch.logEvent("COMPLETE_REGISTRATION", register_data, customer_event_alias, function(err) { 
+      console.log(err); 
+      });
+  };
+
+  function viewEvent () {
+    console.log("view item");
+  };
+
+  function customEvent () {
+    console.log("custom event");
   
+  };
+
+  function addEvent () {
+    console.log("add to cart");
+    var commerce_data = {"revenue":28.45,
+      "currency":"USD",
+      "transaction_id":"313299",
+      "shipping":5.95,
+      "tax":0,
+      //"~referring_link":"379998049730159899",
+      "products":[{"sku":"xbar1788","name":"SAFTB Golf Towel - GOLF / SAFTB","price":25,"quantity":1,"category":"","variant":"GOLF / SAFTB"}]
+    };
+    var metadata =  {};
+    branch.trackCommerceEvent('add_to_cart', commerce_data, metadata, function(err) {
+        if(err) {
+             throw err;
+        }
+    });
+  };
+
+  function makeLink () {
+    var canonicalURL = window.location.href;
+    var linkData = {
+      "$canonical_url": canonicalURL,
+      "campaign":"TTSite"
+    };
+
+    branch.link(linkData, function(err, link) {
+                if (err == null) {
+                    document.getElementById('generatedLink').value = link;
+                } else {
+                    document.getElementById('generatedLink').value = err;
+                }
+            });
+  }
+</script>
 <title>Jonathans Tech Cert Site</title>
 
 
@@ -31,33 +110,42 @@
       <div class="row col-lg-8 col-lg-offset-2">
         <div class="group">
          <h4>Register</h4>
-          <button class="btn btn-info" onclick="completeRegister()">Register</button>
+          <button class="btn btn-info" onclick="registerEvent()">Register</button>
         </div>
       </div>
       <div class="row col-lg-8 col-lg-offset-2">
         <div class="group">
          <h4>View Item</h4>
-          <button class="btn btn-info" onclick="viewItem()">View Item</button>
+          <button class="btn btn-info" onclick="viewEvent()">View Item</button>
         </div>
       </div>
       <div class="row col-lg-8 col-lg-offset-2">
         <div class="group">
          <h4>Add To Cart</h4>
-          <button class="btn btn-info" onclick="addCart()">Add To Cart</button>
+          <button class="btn btn-info" onclick="addEvent()">Add To Cart</button>
         </div>
       </div>
       <div class="row col-lg-8 col-lg-offset-2">
         <div class="group">
          <h4>Purchase</h4>
-          <button class="btn btn-info" onclick="purchase()">Purchase</button>
+          <button class="btn btn-info" onclick="purchaseEvent()">Set Identity</button>
         </div>
       </div>
       <div class="row col-lg-8 col-lg-offset-2">
         <div class="group">
-         <h4>Log Out</h4>
+         <h4>Custom Event</h4>
           <button class="btn btn-info" onclick="customEvent()">Logout</button>
         </div>
       </div>
+      <div class="row col-lg-8 col-lg-offset-2">
+        <div class="group">
+         <h4>Make a Link</h4>
+          <button class="btn btn-info" onclick="makeLink()">Link</button>
+        </div>
+        <br>
+        <textarea class="form-control" style="height:40px; margin-bottom:5%;" id="generatedLink" type="text"></textarea>
+      </div>
+      </section>
   </div>
 
  </body>
