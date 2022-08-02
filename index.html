@@ -50,11 +50,26 @@ branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
 
   function viewEvent () {
     console.log("view item");
+    var register_data = {
+      "transaction_id": "tras_Id_1234",
+      "description": "Registered",
+      "registration_id": "12345"
+    };
+    var customer_event_alias = "my custom alias";
+    branch.logEvent("VIEW_ITEM", register_data, customer_event_alias, function(err) { 
+      console.log(err); 
+      });
   };
 
   function customEvent () {
     console.log("custom event");
-  
+    var custom_data = {
+      "Custom_Event_Property_Key1": "Custom_Event_Property_val1",
+      "Custom_Event_Property_Key2": "Custom_Event_Property_val2"
+    };
+    branch.logEvent('test_custom_event',custom_data, function(err) { 
+      console.log(err); }
+    );
   };
 
   function addEvent () {
@@ -67,12 +82,10 @@ branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
       //"~referring_link":"379998049730159899",
       "products":[{"sku":"xbar1788","name":"SAFTB Golf Towel - GOLF / SAFTB","price":25,"quantity":1,"category":"","variant":"GOLF / SAFTB"}]
     };
-    var metadata =  {};
-    branch.trackCommerceEvent('add_to_cart', commerce_data, metadata, function(err) {
-        if(err) {
-             throw err;
-        }
-    });
+    var customer_event_alias = "my custom alias";
+    branch.logEvent("ADD_TO_CART", commerce_data, customer_event_alias, function(err) { 
+      console.log(err); 
+      });
   };
 
   function makeLink () {
@@ -128,13 +141,13 @@ branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
       <div class="row col-lg-8 col-lg-offset-2">
         <div class="group">
          <h4>Purchase</h4>
-          <button class="btn btn-info" onclick="purchaseEvent()">Set Identity</button>
+          <button class="btn btn-info" onclick="purchaseEvent()">Purchase</button>
         </div>
       </div>
       <div class="row col-lg-8 col-lg-offset-2">
         <div class="group">
          <h4>Custom Event</h4>
-          <button class="btn btn-info" onclick="customEvent()">Logout</button>
+          <button class="btn btn-info" onclick="customEvent()">Custom Event</button>
         </div>
       </div>
       <div class="row col-lg-8 col-lg-offset-2">
