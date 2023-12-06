@@ -5,11 +5,19 @@ document.getElementById('generateQRButton').addEventListener('click', function()
     
     // Initialize an empty data object
     var data = {};
+    var settings = {};
 
     // Function to add non-empty values to the data object
     function addDataIfNotEmpty(key, value) {
         if (value.trim() !== '') {
             data[key] = value.trim();
+        }
+    }
+
+     // Function to add non-empty values to the settings object
+     function addSettingsIfNotEmpty(key, value) {
+        if (value.trim() !== '') {
+            settings[key] = value.trim();
         }
     }
 
@@ -27,11 +35,11 @@ document.getElementById('generateQRButton').addEventListener('click', function()
     data['$web_only'] = document.getElementById('web_only').checked; // Boolean
     
     // Handle design fields
-    addDataIfNotEmpty('code_color', document.getElementById('code_color').value);
-    addDataIfNotEmpty('background_color', document.getElementById('background_color').value);
-    addDataIfNotEmpty('finder_pattern_color', document.getElementById('finder_color').value);
-    addDataIfNotEmpty('center_logo_url', document.getElementById('center_logo').value);
-    
+    addSettingsIfNotEmpty('code_color', document.getElementById('code_color').value);
+    addSettingsIfNotEmpty('background_color', document.getElementById('background_color').value);
+    addSettingsIfNotEmpty('finder_pattern_color', document.getElementById('finder_color').value);
+    addSettingsIfNotEmpty('center_logo_url', document.getElementById('center_logo').value);
+
     // Handle tags (split and trim each tag)
     var tags = document.getElementById('tags').value.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
     if (tags.length > 0) {
@@ -52,6 +60,7 @@ document.getElementById('generateQRButton').addEventListener('click', function()
         method: 'POST',
         headers: {accept: 'image/*', 'content-type': 'application/json'},
         body: JSON.stringify({
+            qr_code_settings: settings,
             data: data,
             branch_key: branch_key
         })
@@ -112,3 +121,4 @@ document.getElementById('addLinkData').addEventListener('click', function() {
     `;
     container.appendChild(newPair);
 });
+
