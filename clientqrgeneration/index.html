@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add a link to a Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code API Generator</title>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .panel {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .panel-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        
+        input[type="checkbox"] {
+            transform: scale(1.3); /* Scale up the checkbox */
+            margin-left: 0; /* Align closer to the left margin */
+            margin-right: 10px; /* Space between checkbox and label */
+            vertical-align: middle; /* Aligns checkbox with the label text */
+        }
+
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .field-description {
+            font-size: 0.9em; /* Smaller font size */
+            color: #666; /* Lighter text color */
+            margin-top: -10px; /* Adjust spacing */
+            margin-bottom: 10px;
+            font-style: italic; /* Italicize the text */
+        }
+
+        @media (max-width: 768px) {
+            .form-group {
+                flex-direction: column;
+            }
+        }
+    </style>    
+</head>
+<body>
+    <h1>QR Code API Generator</h1>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Branch Key</h3>
+        </div>
+        <div class="form-group">
+            <p class="field-description">The Branch key of the app. Obtained from the Account Settings in the Branch dashboard.</p>
+            <input type="text" id="branch_key" class="form-control" placeholder="Enter Branch Key. Begins with key_live...">
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Analytics Information</h3>
+        </div>
+        <div class="form-group">
+            <label for="feature">Feature:</label>
+            <p class="field-description">Feature should describe where this QR code is placed.</p>
+            <input type="text" id="feature" class="form-control" placeholder="Enter ~feature">
+        </div>
+        <div class="form-group">
+            <label for="channel">Channel:</label>
+            <p class="field-description">Channel should describe the platform or source from which you are expecting users to scan this QR code.</p>
+            <input type="text" id="channel" class="form-control" placeholder="Enter ~channel">
+        </div>
+        <div class="form-group">
+            <label for="campaign">Campaign:</label>
+            <p class="field-description">Campaign varies from company to company, but it should describe the theme of the QR code.</p>
+            <input type="text" id="campaign" class="form-control" placeholder="Enter ~campaign">
+        </div>
+        <div class="form-group">
+            <label for="tags">Tags:</label>
+            <p class="field-description">Tags are a free-form list of labels that can be used as filters.</p>
+            <input type="text" id="tags" class="form-control" placeholder="Enter ~tags. Separate values using commas.">
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Redirects</h3>
+        </div>
+        <div class="form-group">
+            <label for="ios_url">iOS URL:</label>
+            <p class="field-description">Change the redirect for iOS. Default is the App Store page for your app.</p>
+            <input type="text" id="ios_url" class="form-control" placeholder="Leave blank to redirect to the App Store.">
+        </div>
+        <div class="form-group">
+            <label for="android_url">Android URL:</label>
+            <p class="field-description">Change the redirect for Android. Default is the Google Play Store page for your app.</p>
+            <input type="text" id="android_url" class="form-control" placeholder="Leave blank to redirect to the Google Play Store.">
+        </div>
+        <div class="form-group">
+            <label for="web_only">Web Only?</label>
+            <p class="field-description">Always redirect to web, even if the app is installed.</p>
+            <input type="checkbox" id="web_only" name="web_only">
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Link Data</h3>
+            <p class="field-description">Add the data that you want to be passed to your app via this QR code. This data is also used to configure functions like deep link routing.</p>
+        </div>
+        <div id="linkData">
+            <div class="form-group">
+                <label>Key:</label>
+                <input type="text" class="form-control key-input" placeholder="Enter key">
+                <label>Value:</label>
+                <input type="text" class="form-control value-input" placeholder="Enter value">
+            </div>
+        </div>
+        <button id="addLinkData" class="btn btn-secondary">Add Another Key-Value Pair</button>
+        <div class="panel-heading">
+            <h3 class="panel-title">QR Code</h3>
+        </div>
+        <div id="qrCodeContainer"></div> <!-- QR code image container -->
+        <button id="downloadQRButton" class="btn btn-secondary" style="display: none;">Download QR Code</button>
+        <button id="generateQRButton" class="btn btn-primary">Generate QR Code</button>
+    </div>
+</body>
+</html>
