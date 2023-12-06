@@ -14,14 +14,24 @@ document.getElementById('generateQRButton').addEventListener('click', function()
     }
 
     // Handle predefined fields
+    addDataIfNotEmpty('$marketing_title', document.getElementById('marketing_title').value);
+    addDataIfNotEmpty('alias', document.getElementById('link_alias').value);
     addDataIfNotEmpty('~feature', document.getElementById('feature').value);
     addDataIfNotEmpty('~channel', document.getElementById('channel').value);
     addDataIfNotEmpty('~campaign', document.getElementById('campaign').value);
     addDataIfNotEmpty('$ios_url', document.getElementById('ios_url').value);
     addDataIfNotEmpty('$android_url', document.getElementById('android_url').value);
+    addDataIfNotEmpty('$desktop_url', document.getElementById('desktop_url').value);
+    
     // For checkbox
     data['$web_only'] = document.getElementById('web_only').checked; // Boolean
-
+    
+    // Handle design fields
+    addDataIfNotEmpty('code_color', document.getElementById('code_color').value);
+    addDataIfNotEmpty('background_color', document.getElementById('background_color').value);
+    addDataIfNotEmpty('finder_pattern_color', document.getElementById('finder_color').value);
+    addDataIfNotEmpty('center_logo_url', document.getElementById('center_logo').value);
+    
     // Handle tags (split and trim each tag)
     var tags = document.getElementById('tags').value.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
     if (tags.length > 0) {
