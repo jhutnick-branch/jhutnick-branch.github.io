@@ -106,6 +106,11 @@
             <p class="field-description">The Marketing Title is the name of the link.</p>
             <input type="text" id="marketing_title" class="form-control" placeholder="Enter Marketing Title">
         </div>
+        <div class="form-group">
+            <label for="link_alias">Link Alias:</label>
+            <p class="field-description">The Alias after the "/" in disneyworld.app.link/.</p>
+            <input type="text" id="link_alias" class="form-control" placeholder="disneyworld.app.link/xyz123">
+        </div>
         <div class="panel-heading">
             <h3 class="panel-title">Analytics Information</h3>
         </div>
@@ -183,10 +188,11 @@
             <p class="field-description">Change the color of the Finder pattern. Black by default.</p>
             <input type="text" id="finder_color" class="form-control" placeholder="#000000">
         </div>
-        <p>Click on the "Choose File" button to upload a file:</p>
-        <form action="/action_page.php">
-            <input type="file" id="myFile" name="filename">
-          </form>
+        <div class="form-group">
+            <label for="center_logo">Logo Image URL:</label>
+            <p class="field-description">URL to the image used for the QR Code center</p>
+            <input type="text" id="center_logo" class="form-control" placeholder="https://cdn.branch.io/branch-assets//949635369626784139/MickeyHead_Icon-1691425161022.jpg">
+        </div>
         <div class="panel-heading">
             <h3 class="panel-title">QR Code</h3>
         </div>
