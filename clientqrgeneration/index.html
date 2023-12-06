@@ -101,6 +101,11 @@
             <p class="field-description">The Branch key of the app. Obtained from the Account Settings in the Branch dashboard.</p>
             <input type="text" id="branch_key" class="form-control" placeholder="Enter Branch Key. Begins with key_live...">
         </div>
+        <div class="form-group">
+            <label for="marketing_title">Marketing Title:</label>
+            <p class="field-description">The Marketing Title is the name of the link.</p>
+            <input type="text" id="marketing_title" class="form-control" placeholder="Enter Marketing Title">
+        </div>
         <div class="panel-heading">
             <h3 class="panel-title">Analytics Information</h3>
         </div>
@@ -138,6 +143,11 @@
             <input type="text" id="android_url" class="form-control" placeholder="Leave blank to redirect to the Google Play Store.">
         </div>
         <div class="form-group">
+            <label for="desktop_url">Desktop URL:</label>
+            <p class="field-description">Change the redirect for Desktop. Default is the help page.</p>
+            <input type="text" id="desktop_url" class="form-control" placeholder="Leave blank to redirect to the help page.">
+        </div>
+        <div class="form-group">
             <label for="web_only">Web Only?</label>
             <p class="field-description">Always redirect to web, even if the app is installed.</p>
             <input type="checkbox" id="web_only" name="web_only">
@@ -155,6 +165,24 @@
             </div>
         </div>
         <button id="addLinkData" class="btn btn-secondary">Add Another Key-Value Pair</button>
+        <div class="panel-heading">
+            <h3 class="panel-title">QR Code Design</h3>
+        </div>
+        <div class="form-group">
+            <label for="code_color">Code Color:</label>
+            <p class="field-description">Change the color of the code pattern. Black by default</p>
+            <input type="text" id="code_color" class="form-control" placeholder="#000000">
+        </div>
+        <div class="form-group">
+            <label for="background_color">Background Color:</label>
+            <p class="field-description">Change the color of the code pattern. White by default.</p>
+            <input type="text" id="background_color" class="form-control" placeholder="#FFFFFF">
+        </div>
+        <div class="form-group">
+            <label for="finder_color">Finder Color:</label>
+            <p class="field-description">Change the color of the Finder pattern. Black by default.</p>
+            <input type="text" id="finder_color" class="form-control" placeholder="#000000">
+        </div>
         <div class="panel-heading">
             <h3 class="panel-title">QR Code</h3>
         </div>
