@@ -5,7 +5,7 @@ document.getElementById('generateQRButton').addEventListener('click', function()
     
     // Initialize an empty data object
     var data = {};
-    var settings = {};
+    var qr_code_settings = {};
 
     // Function to add non-empty values to the data object
     function addDataIfNotEmpty(key, value) {
@@ -17,7 +17,7 @@ document.getElementById('generateQRButton').addEventListener('click', function()
      // Function to add non-empty values to the settings object
      function addSettingsIfNotEmpty(key, value) {
         if (value.trim() !== '') {
-            settings[key] = value.trim();
+            qr_code_settings[key] = value.trim();
         }
     }
 
@@ -60,8 +60,8 @@ document.getElementById('generateQRButton').addEventListener('click', function()
         method: 'POST',
         headers: {accept: 'image/*', 'content-type': 'application/json'},
         body: JSON.stringify({
-            qr_code_settings: settings,
             data: data,
+            qr_code_settings: qr_code_settings,
             branch_key: branch_key
         })
     };
@@ -121,4 +121,3 @@ document.getElementById('addLinkData').addEventListener('click', function() {
     `;
     container.appendChild(newPair);
 });
-
