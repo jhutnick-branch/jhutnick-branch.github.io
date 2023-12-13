@@ -10,6 +10,8 @@ document.getElementById('generateQRButton').addEventListener('click', function()
     var data = {};
     var qr_code_settings = {};
 
+    qr_code_settings["width"] = 600;
+
     // Function to add non-empty values to the data object
     function addDataIfNotEmpty(key, value) {
         if (value.trim() !== '') {
