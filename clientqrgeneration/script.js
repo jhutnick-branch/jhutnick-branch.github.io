@@ -33,6 +33,9 @@ document.getElementById('generateQRButton').addEventListener('click', function()
     
     // For checkbox
     data['$web_only'] = document.getElementById('web_only').checked; // Boolean
+    if(document.getElementById('type').checked) {
+        data['type'] = 2
+    }
     
     // Handle design fields
     addSettingsIfNotEmpty('code_color', document.getElementById('code_color').value);
