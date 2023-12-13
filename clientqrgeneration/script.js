@@ -1,7 +1,10 @@
 // listen for click on QR button
 document.getElementById('generateQRButton').addEventListener('click', function() {
     // get Branch Key
+    var type = 2;
+    var alias = document.getElementById('link_alias').value;
     var branch_key = document.getElementById('branch_key').value;
+
     
     // Initialize an empty data object
     var data = {};
@@ -23,7 +26,6 @@ document.getElementById('generateQRButton').addEventListener('click', function()
 
     // Handle predefined fields
     addDataIfNotEmpty('$marketing_title', document.getElementById('marketing_title').value);
-    addDataIfNotEmpty('alias', document.getElementById('link_alias').value);
     addDataIfNotEmpty('~feature', document.getElementById('feature').value);
     addDataIfNotEmpty('~channel', document.getElementById('channel').value);
     addDataIfNotEmpty('~campaign', document.getElementById('campaign').value);
@@ -33,9 +35,6 @@ document.getElementById('generateQRButton').addEventListener('click', function()
     
     // For checkbox
     data['$web_only'] = document.getElementById('web_only').checked; // Boolean
-    if(document.getElementById('type').checked) {
-        data['type'] = 2
-    }
     
     // Handle design fields
     addSettingsIfNotEmpty('code_color', document.getElementById('code_color').value);
@@ -65,6 +64,8 @@ document.getElementById('generateQRButton').addEventListener('click', function()
         body: JSON.stringify({
             data: data,
             qr_code_settings: qr_code_settings,
+            alias,
+            type,
             branch_key: branch_key
         })
     };
