@@ -24,7 +24,13 @@ branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo', branchOptions, (err, da
     branchData = data;
     branchInitialized();
 });
+// close
+branch.closeJourney(function(err, data) {
+  console.log(err, data);
+});
 
+// reopen
+branch.track("pageview");
 function branchInitialized() {
         branch.setBranchViewData({
             data: {
