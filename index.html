@@ -16,7 +16,19 @@
 
 branch.setRequestMetaData("key1","value1");	
 // branch.setIdentity("suuid", (err) => console.error(err));
-branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
+branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo', (err, data) => {
+    branchInitialized();
+});
+
+function branchInitialized() {
+    if(!deeplinkPath) {
+        branch.setBranchViewData({
+            data: {
+                '$deeplink_path': "https://www.google.com",
+                "$canonical_url": "https://www.google.com"
+            }
+        })
+    }
 
   function purchaseEvent () {
     console.log("purchase");
