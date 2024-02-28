@@ -37,6 +37,10 @@ var linkData = {
 };
 
 branch.setBranchViewData(linkData);
+	
+branch.closeJourney(function(err, data) {
+  console.log(err, data);
+});
 
 // reopen
 branch.track("pageview");
