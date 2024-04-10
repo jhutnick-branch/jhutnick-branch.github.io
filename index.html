@@ -19,35 +19,41 @@
 branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
 
 // optional additional deep link data
-var linkData = {
-  campaign: 'content 123',
-  channel: 'facebook',
-  feature: 'dashboard',
-  stage: 'new user',
-  tags: [ 'tag1', 'tag2', 'tag3' ],
-  alias: '',
-  data: {
-    'custom_bool': true,
-    'custom_int': Date.now(),
-    'custom_string': 'hello',
-    '$og_title': 'Title',
-    '$og_description': 'Description',
-    '$og_image_url':'http://lorempixel.com/400/400',
-    '$journeys_title': 'Mi App',    
-    '$journeys_description': 'Mi descripción', 
-    '$journeys_button_get_has_app"': 'Abrir', 
-    '$journeys_button_get_no_app': 'Ver' 
-  }
-};
+// var linkData = {
+//   campaign: 'content 123',
+//   channel: 'facebook',
+//   feature: 'dashboard',
+//   stage: 'new user',
+//   tags: [ 'tag1', 'tag2', 'tag3' ],
+//   alias: '',
+//   data: {
+//     'custom_bool': true,
+//     'custom_int': Date.now(),
+//     'custom_string': 'hello',
+//     '$og_title': 'Title',
+//     '$og_description': 'Description',
+//     '$og_image_url':'http://lorempixel.com/400/400',
+//     '$journeys_title': 'Mi App',    
+//     '$journeys_description': 'Mi descripción', 
+//     '$journeys_button_get_has_app"': 'Abrir', 
+//     '$journeys_button_get_no_app': 'Ver' 
+//   }
+// };
 
-branch.setBranchViewData(linkData);
-	
-branch.closeJourney(function(err, data) {
-  console.log(err, data);
+// branch.setBranchViewData(linkData);
+branch.setBranchViewData({
+    data: {
+        'liquidValue': 'LiquidApp',
+        'liquidName': 'Jon',    
+    }
 });
+	
+// branch.closeJourney(function(err, data) {
+//   console.log(err, data);
+// });
 
-// reopen
-branch.track("pageview");
+// // reopen
+// branch.track("pageview");
 
   function purchaseEvent () {
     console.log("purchase");
