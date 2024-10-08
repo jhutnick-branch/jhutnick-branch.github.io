@@ -20,6 +20,7 @@
 
 
 branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
+javascript branch.closeJourney(function(err) { console.log(err); });
 branch.setBranchViewData({data: {'$journeys_title': 'Visit now for 20% off',}});
 
 
@@ -108,6 +109,8 @@ branch.setBranchViewData({data: {'$journeys_title': 'Visit now for 20% off',}});
 
   function viewEvent () {
     console.log("view item");
+// reopen
+    branch.track("pageview");
     var register_data = {
       "transaction_id": "tras_Id_1234",
       "description": "Registered",
