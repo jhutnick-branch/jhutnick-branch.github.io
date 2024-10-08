@@ -20,7 +20,6 @@
 
 
 branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
-javascript branch.closeJourney(function(err) { console.log(err); });
 branch.setBranchViewData({data: {'$journeys_title': 'Visit now for 20% off',}});
 
 
@@ -31,9 +30,9 @@ branch.setBranchViewData({data: {'$journeys_title': 'Visit now for 20% off',}});
 //  console.log(err, data);
 //});
 
-// branch.closeJourney(function(err, data) {
-//   console.log(err, data);
-// });
+branch.closeJourney(function(err, data) {
+	console.log(err, data);
+});
 
 // branch.data(function(err, data) {
 //   console.log(err, data);
