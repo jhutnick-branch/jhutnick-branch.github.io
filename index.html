@@ -8,6 +8,8 @@
 <meta name="branch:deeplink:~channel" content="Web" />
 <meta name="branch:deeplink:productId" content="1234" />
 <meta name="branch:deeplink:page_type" content="Merchant Page" />
+<meta name="branch:deeplink:$deeplink_path" content="/test/123" />
+	
 <!-- <meta name="branch:deeplink:name" content="jonathan_hutnick" /> -->
 <!-- <meta name="branch:deeplink:liquidValue" content="Liquid App" /> -->
 <!-- <meta name="branch:deeplink:liquidTitle" content="Visit now for 10% off" /> -->
@@ -26,7 +28,27 @@ branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
 branch.setBranchViewData({data: {'$journeys_title': 'Visit now for 20% off',}});
 
 
+var linkData = {
+  campaign: 'content 123',
+  channel: 'facebook',
+  feature: 'dashboard',
+  stage: 'new user',
+  tags: [ 'tag1', 'tag2', 'tag3' ],
+  alias: '',
+  data: {
+    'custom_bool': true,
+    'custom_int': Date.now(),
+    'custom_string': 'hello',
+    '$og_title': 'Title',
+    '$og_description': 'Description',
+    '$og_image_url':'http://lorempixel.com/400/400'
+    '$canonical_url': 'https://jhutnick-branch.github.io/'
+  }
+};
 
+branch.link(linkData, function(err, link) {
+  console.log(link);
+});
 
 	
 //branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo', function(err, data) {
