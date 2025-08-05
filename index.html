@@ -4,11 +4,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <meta property="og:description" content="some content here"/> -->
-<meta name="branch:deeplink:~campaign" content="testCampaign" />
-<meta name="branch:deeplink:~channel" content="Web" />
-<meta name="branch:deeplink:productId" content="1234" />
-<meta name="branch:deeplink:page_type" content="Merchant Page" />
-<meta name="branch:deeplink:$deeplink_path" content="/test/123" />
+<meta name="branch:deeplink:~campaign" content="testScrapeCampaign" />
+<meta name="branch:deeplink:~channel" content="testScrapeChannel" />
+<!--<meta name="branch:deeplink:productId" content="1234" /> -->
+<!-- <meta name="branch:deeplink:page_type" content="Merchant Page" /> -->
+<meta name="branch:deeplink:$deeplink_path" content="/test/scrape" />
 	
 <!-- <meta name="branch:deeplink:name" content="jonathan_hutnick" /> -->
 <!-- <meta name="branch:deeplink:liquidValue" content="Liquid App" /> -->
@@ -29,11 +29,6 @@ branch.setBranchViewData({data: {'$journeys_title': 'Visit now for 20% off',}});
 
 
 var linkData = {
-  campaign: 'content 123',
-  channel: 'facebook',
-  feature: 'dashboard',
-  stage: 'new user',
-  tags: [ 'tag1', 'tag2', 'tag3' ],
   alias: '',
   data: {
     'custom_bool': true,
