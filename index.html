@@ -30,24 +30,49 @@ branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
 //});
 
 
+//var linkData = {
+//  alias: '',
+ // data: {
+//    'custom_bool': true,
+ //   'custom_int': Date.now(),
+ //   'custom_string': 'hello',
+ //   '$og_title': 'Title',
+ //   '$og_description': 'orgtest',
+  //  '$og_image_url':'http://lorempixel.com/400/400',
+  //  '$original_url': 'https://www.depop.com/gb/',
+  //  '$desktop_deepview': 'branch_default',
+ //   '$canonical_url': 'https://www.depop.com/gb/'
+//  }
+//};
+
 var linkData = {
+  campaign: 'content 123',
+  channel: 'facebook',
+  feature: 'dashboard',
+  stage: 'new user',
+  tags: [ 'tag1', 'tag2', 'tag3' ],
   alias: '',
   data: {
     'custom_bool': true,
     'custom_int': Date.now(),
     'custom_string': 'hello',
     '$og_title': 'Title',
-    '$og_description': 'orgtest',
-    '$og_image_url':'http://lorempixel.com/400/400',
-    '$original_url': 'https://www.depop.com/gb/',
-    '$desktop_deepview': 'branch_default',
-    '$canonical_url': 'https://www.depop.com/gb/'
+    '$og_description': 'Description',
+    '$og_image_url':'https://cdn.branch.io/branch-assets/journeys/892511430966793060/interstitial-BranchJourney-Station-1125x2000-2-1666370851953.jpg'
   }
 };
+// Set Branch Deep Link data dynamically for a given mobile web Journey
+branch.setBranchViewData(linkData);
 
-branch.link(linkData, function(err, link) {
-  console.log(link);
+branch.closeJourney(function(err, data) {
+  console.log(err, data);
 });
+
+branch.track("pageview");
+
+//branch.link(linkData, function(err, link) {
+//  console.log(link);
+//});
 
 	
 //branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo', function(err, data) {
