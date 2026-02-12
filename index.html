@@ -24,19 +24,46 @@ branch.setRequestMetaData("$marketing_cloud_visitor_id","12345");
 	// Assuming your URL is in a variable called myDynamicImage
 branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
 
+// 1. Grab your dynamic image URL
+var url_for_image = "https://cdn.branch.io/branch-assets/journeys/892511430966793060/interstitial-BranchJourney-Station-1125x2000-2-1666370851953.jpg";
 
-branch.setBranchViewData({
-    data: {
-        'custom_bg': "https://cdn.branch.io/branch-assets/journeys/892511430966793060/interstitial-BranchJourney-Station-1125x2000-2-1666370851953.jpg"
+// 2. We have to wait for the iframe to actually be created by Branch
+var checkIframe = setInterval(function() {
+    // Branch usually gives the iframe an ID like 'branch-banner-iframe' 
+    // or it's inside a div with id 'branch-banner'
+    var iframe = document.querySelector('iframe#branch-banner-iframe') || document.querySelector('.branch-journey-container iframe');
+
+    if (iframe) {
+        clearInterval(checkIframe); // Stop looking once we find it
+
+        iframe.onload = function() {
+            try {
+                var style = document.createElement('style');
+                style.textContent = `
+                    #branch-banner .branch-banner-content {
+                        background-image: url('${url_for_image}') !important;
+                    }
+                `;
+                iframe.contentDocument.head.appendChild(style);
+                console.log("CSS Injected Successfully");
+            } catch (e) {
+                console.error("Security Block: Cannot access iframe content.", e);
+            }
+        };
     }
-});
+}, 500); // Check every 500ms
+//branch.setBranchViewData({
+//    data: {
+//        'custom_bg': "https://cdn.branch.io/branch-assets/journeys/892511430966793060/interstitial-BranchJourney-Station-1125x2000-2-1666370851953.jpg"
+//    }
+//});
 
-branch.closeJourney(function(err, data) {
-   console.log(err, data);
-});
+//branch.closeJourney(function(err, data) {
+//   console.log(err, data);
+//});
 
 // reopen
-branch.track("pageview");
+//branch.track("pageview");
 
 //branch.setBranchViewData({data: {'$journeys_title': 'Visit now for 20% off',}});
 
