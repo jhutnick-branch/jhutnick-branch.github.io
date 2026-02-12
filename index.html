@@ -21,6 +21,14 @@
 // Load Branch
 (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener banner closeBanner closeJourney data deepview deepviewCta first init link logout removeListener setBranchViewData setIdentity track trackCommerceEvent logEvent disableTracking getBrowserFingerprintId crossPlatformIds lastAttributedTouchData setAPIResponseCallback qrCode setRequestMetaData setAPIUrl getAPIUrl setDMAParamsForEEA".split(" "), 0);
 branch.setRequestMetaData("$marketing_cloud_visitor_id","12345");
+	// Assuming your URL is in a variable called myDynamicImage
+var myDynamicImage = "https://cdn.branch.io/branch-assets/journeys/892511430966793060/interstitial-BranchJourney-Station-1125x2000-2-1666370851953.jpg"; 
+
+branch.setBranchViewData({
+    data: {
+        'custom_bg': myDynamicImage
+    }
+});
 branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
 
 //branch.setBranchViewData({data: {'$journeys_title': 'Visit now for 20% off',}});
@@ -44,31 +52,6 @@ branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
  //   '$canonical_url': 'https://www.depop.com/gb/'
 //  }
 //};
-
-var linkData = {
-  campaign: 'content 123',
-  channel: 'facebook',
-  feature: 'dashboard',
-  stage: 'new user',
-  tags: [ 'tag1', 'tag2', 'tag3' ],
-  alias: '',
-  data: {
-    'custom_bool': true,
-    'custom_int': Date.now(),
-    'custom_string': 'hello',
-    '$og_title': 'Title',
-    '$og_description': 'Description',
-    '$journeys_icon_image_url':'https://cdn.branch.io/branch-assets/journeys/892511430966793060/interstitial-BranchJourney-Station-1125x2000-2-1666370851953.jpg'
-  }
-};
-// Set Branch Deep Link data dynamically for a given mobile web Journey
-branch.setBranchViewData(linkData);
-
-branch.closeJourney(function(err, data) {
-  console.log(err, data);
-});
-
-branch.track("pageview");
 
 //branch.link(linkData, function(err, link) {
 //  console.log(link);
