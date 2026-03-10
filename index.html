@@ -22,15 +22,23 @@
 (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener banner closeBanner closeJourney data deepview deepviewCta first init link logout removeListener setBranchViewData setIdentity track trackCommerceEvent logEvent disableTracking getBrowserFingerprintId crossPlatformIds lastAttributedTouchData setAPIResponseCallback qrCode setRequestMetaData setAPIUrl getAPIUrl setDMAParamsForEEA".split(" "), 0);
 //branch.setRequestMetaData("$marketing_cloud_visitor_id","12345");
 	// Assuming your URL is in a variable called myDynamicImage
-branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
-// Login and set user identity
-branch.setIdentity('123456', function (err, data) {
-  console.log(err, data);
+branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo', function(err, data) {
+    if (err) {
+        console.error('Branch init failed:', err);
+        return;
+    }
+    
+    // Once initialized, set the identity
+    branch.setIdentity('123456', function (err, data) {
+        if (err) console.error(err);
+        else console.log('Identity set successfully:', data);
+    });
 });
-
 // Logout
-branch.logout(function(err, data) {
-	console.log(err, data);
+branch.logout(function(err) {
+    if (!err) {
+        console.log('User logged out and session cleared.');
+    }
 });
 // // 1. Grab your dynamic image URL
 // var url_for_image = "https://cdn.branch.io/branch-assets/journeys/892511430966793060/interstitial-BranchJourney-Station-1125x2000-2-1666370851953.jpg";
