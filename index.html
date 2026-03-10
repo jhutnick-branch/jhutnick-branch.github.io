@@ -23,7 +23,15 @@
 //branch.setRequestMetaData("$marketing_cloud_visitor_id","12345");
 	// Assuming your URL is in a variable called myDynamicImage
 
-branch.setIdentity("12345");
+// Login and set user identity
+branch.setIdentity('123456', function (err, data) {
+  console.log(err, data);
+});
+
+// Logout
+branch.logout(function(err, data) {
+	console.log(err, data);
+});
 branch.init('key_live_dm2I4K0XC9OUncuFN2BMilagzsbIY0Qo');
 
 // // 1. Grab your dynamic image URL
